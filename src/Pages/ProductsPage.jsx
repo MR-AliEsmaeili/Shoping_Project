@@ -2,18 +2,40 @@ import Card from "../Components/Card";
 import { useProducts } from "../Context/ProductProvider";
 import Loader from "../Components/Loader";
 import { ImSearch } from "react-icons/im";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiCategory } from "react-icons/bi";
+import { useSearchParams } from "react-router-dom";
+import {
+  createQueryObject,
+  filterProducts,
+  searchProducts,
+} from "../helpers/helper";
 
 const ProductsPage = () => {
   const [search, setSearch] = useState("");
+  const [displayed, setDisplayed] = useState([]);
+  const [query, setQuery] = useState({});
+
   const Products = useProducts();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    setDisplayed(Products);
+  }, [Products]);
+  useEffect(() => {
+    setSearchParams(query);
+    let finalProducts = searchProducts(Products, query.search);
+    finalProducts = filterProducts(finalProducts, query.category);
+    setDisplayed(finalProducts);
+  }, [query]);
 
   const categoryHandler = (e) => {
     const category = e.target.dataset.name; // استفاده از ویژگی data-name
-    console.log(category);
+    setQuery((query) => createQueryObject(query, { category }));
   };
-
+  const searchHandler = () => {
+    setQuery((query) => createQueryObject(query, { search }));
+  };
   return (
     <>
       <div className="mt-16 flex align-baseline">
@@ -24,7 +46,10 @@ const ProductsPage = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
         />
-        <button className="p-3 mx-3 shadow-sm shadow-gray-400 rounded-lg bg-blue-500">
+        <button
+          className="p-3 mx-3 shadow-sm shadow-gray-400 rounded-lg bg-blue-500"
+          onClick={searchHandler}
+        >
           <ImSearch color="white" />
         </button>
       </div>
@@ -33,7 +58,7 @@ const ProductsPage = () => {
           <Loader />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 flex-1">
-            {Products.map((p) => (
+            {displayed.map((p) => (
               <Card key={p.id} data={p}></Card>
             ))}
           </div>
