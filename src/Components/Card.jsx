@@ -6,7 +6,7 @@ import { ShortenText } from "../helpers/helper";
 const Card = ({ data }) => {
   const { id, title, image, price } = data;
   return (
-    <div className="bg-white  shadow-md rounded-lg overflow-hidden flex flex-col  p-4 transition-transform transform hover:scale-105">
+    <div className="bg-white  shadow-md rounded-lg overflow-hidden flex flex-col  p-4 duration-500 cursor-pointer transition-transform transform hover:scale-105">
       <img
         className="w-full h-40 object-contain mb-4"
         src={image}
