@@ -1,15 +1,11 @@
 import Card from "../Components/Card";
 import { useProducts } from "../Context/ProductProvider";
 import Loader from "../Components/Loader";
-import { ImSearch } from "react-icons/im";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  createQueryObject,
-  filterProducts,
-  searchProducts,
-} from "../helpers/helper";
+import { filterProducts, searchProducts } from "../helpers/helper";
 import SideBar from "../Components/SideBar";
+import SearchBox from "../Components/SearchBox";
 
 const ProductsPage = () => {
   const [search, setSearch] = useState("");
@@ -21,7 +17,9 @@ const ProductsPage = () => {
 
   useEffect(() => {
     setDisplayed(Products);
+    setSearch(query.search || "");
   }, [Products]);
+
   useEffect(() => {
     setSearchParams(query);
     let finalProducts = searchProducts(Products, query.search);
@@ -29,26 +27,9 @@ const ProductsPage = () => {
     setDisplayed(finalProducts);
   }, [query]);
 
-  const searchHandler = () => {
-    setQuery((query) => createQueryObject(query, { search }));
-  };
   return (
     <>
-      <div className="mt-16 flex align-baseline">
-        <input
-          className="p-3 rounded-lg shadow-sm shadow-gray-400 outline-none"
-          type="text"
-          placeholder="جستجو محصول ..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
-        />
-        <button
-          className="p-3 mx-3 shadow-sm shadow-gray-400 rounded-lg bg-blue-500"
-          onClick={searchHandler}
-        >
-          <ImSearch color="white" />
-        </button>
-      </div>
+      <SearchBox search={search} setSearch={setSearch} setQuery={setQuery} />
       <div className="flex flex-col md:flex-row mt-10 gap-6">
         {Products.length === 0 ? (
           <Loader />
