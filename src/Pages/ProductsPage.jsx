@@ -3,7 +3,11 @@ import { useProducts } from "../Context/ProductProvider";
 import Loader from "../Components/Loader";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { filterProducts, searchProducts } from "../helpers/helper";
+import {
+  filterProducts,
+  getinitialQuery,
+  searchProducts,
+} from "../helpers/helper";
 import SideBar from "../Components/SideBar";
 import SearchBox from "../Components/SearchBox";
 
@@ -18,6 +22,8 @@ const ProductsPage = () => {
   useEffect(() => {
     setDisplayed(Products);
     setSearch(query.search || "");
+    // const Query =
+    setQuery(getinitialQuery(searchParams));
   }, [Products]);
 
   useEffect(() => {
