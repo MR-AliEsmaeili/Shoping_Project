@@ -1,10 +1,20 @@
 import { BsBasket } from "react-icons/bs";
 import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { ShortenText } from "../helpers/helper";
+import { productsQuantity, ShortenText } from "../helpers/helper";
+import { useCart } from "../Context/CartProvider";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
 const Card = ({ data }) => {
   const { id, title, image, price } = data;
+  const [state, dispatch] = useCart();
+
+  const clickHandler = (type) => {
+    dispatch({ type, payload: data });
+  };
+  const quantity = productsQuantity(state, id);
+
   return (
     <div className="bg-white  shadow-md rounded-lg overflow-hidden flex flex-col  p-4 duration-500 cursor-pointer transition-transform transform hover:scale-105">
       <img
@@ -24,14 +34,47 @@ const Card = ({ data }) => {
         >
           <TbListDetails />
         </Link>
-        <button
-          className="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
-          title="اضافه به سبد خرید"
-        >
-          <BsBasket />
-        </button>
+        {/* <div> */}
+
+        {quantity === 0 ? (
+          <button
+            className="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
+            title="اضافه به سبد خرید"
+            onClick={() => clickHandler("ADD_ITEM")}
+          >
+            <BsBasket />
+          </button>
+        ) : (
+          <button
+            className="bg-slate-200 text-green-700 py-1 px-3 rounded-lg hover:border border-green-700"
+            title="اضافه کردن تعداد سبد خرید"
+            onClick={() => clickHandler("INCREASE")}
+          >
+            <CiCirclePlus />
+          </button>
+        )}
+        {!!quantity && <span>{quantity}</span>}
+        {quantity === 1 && (
+          <button
+            className="bg-slate-200 text-red-700 py-1 px-3 rounded-lg hover:border hover:border-red-700"
+            title="حذف از سبد خرید"
+            onClick={() => clickHandler("REMOVE_ITEM")}
+          >
+            <RiDeleteBin6Line />
+          </button>
+        )}
+        {quantity > 1 && (
+          <button
+            className="bg-slate-200 text-red-700 py-1 px-3 rounded-lg hover:border border-red-700"
+            title="کاهش تعداد سبد خرید"
+            onClick={() => clickHandler("DECREASE")}
+          >
+            <CiCircleMinus />
+          </button>
+        )}
       </div>
     </div>
+    // </div>
   );
 };
 
