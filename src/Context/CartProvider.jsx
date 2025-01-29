@@ -5,7 +5,7 @@ const CartContext = createContext();
 const initialState = {
   selectedItems: [],
   itemCounter: 0,
-  totlal: 0,
+  total: 0,
   checkout: false,
 };
 const reducer = (state, action) => {

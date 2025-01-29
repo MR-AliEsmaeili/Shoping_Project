@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
           </Link>
           <div
             className={
-              "flex text-white bg-indigo-500 p-2 rounded-md font-extrabold hover:bg-indigo-700 "
+              "flex text-white bg-indigo-500 p-2 rounded-md font-extrabold duration-300 hover:bg-indigo-700 "
             }
           >
             <span className="text-white">
@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
         </header>
       </div>
       {children}
-      <footer className="text-center my-24  p-6  rounded-lg text-white  bg-indigo-500">
+      <footer className="text-center my-6  p-6  rounded-lg text-white  bg-indigo-500">
         طراحی با عشق توسط علی اسماعیلی 💜
       </footer>
     </>

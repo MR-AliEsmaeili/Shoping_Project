@@ -16,7 +16,7 @@ const Card = ({ data }) => {
   const quantity = productsQuantity(state, id);
 
   return (
-    <div className="bg-white  shadow-md rounded-lg overflow-hidden flex flex-col  p-4 duration-500 cursor-pointer transition-transform transform hover:scale-105">
+    <div className="bg-white  shadow-md rounded-lg overflow-hidden flex flex-col  p-4 duration-300 cursor-pointer transition-transform transform hover:scale-105">
       <img
         className="w-full h-40 object-contain mb-4"
         src={image}
@@ -27,10 +27,10 @@ const Card = ({ data }) => {
         {ShortenText(title)}
       </h3>
       <p className="text-gray-600 text-end ml-12 text-sm mb-4">{price} تومان</p>
-      <div className="flex justify-around items-center w-full mt-auto">
+      <div className="flex justify-around items-center py-2 w-full mt-auto">
         <Link
           to={`/products/${id}`}
-          className="text-orange-500 hover:text-orange-700 text-lg"
+          className="text-orange-500 duration-300 hover:text-orange-700 text-lg"
           title="جزئیات محصول"
         >
           <TbListDetails />
@@ -38,7 +38,7 @@ const Card = ({ data }) => {
         {/* <div className="flex justify-evenly items-center"> */}
         {quantity === 0 ? (
           <button
-            className="bg-indigo-500 font-semibold text-white px-3 py-2 rounded-lg  hover:bg-indigo-700 "
+            className="bg-indigo-500 font-semibold duration-300 text-white px-3 py-2 rounded-lg  hover:bg-indigo-700 "
             title="اضافه به سبد خرید"
             onClick={() => clickHandler("ADD_ITEM")}
           >
@@ -46,7 +46,7 @@ const Card = ({ data }) => {
           </button>
         ) : (
           <button
-            className="bg-slate-200 text-green-600 py-1 px-3 rounded-lg hover:text-green-700"
+            className="bg-slate-200 text-green-600 duration-300 py-1 px-3 rounded-lg hover:text-green-700"
             title="اضافه کردن تعداد سبد خرید"
             onClick={() => clickHandler("INCREASE")}
           >
@@ -56,7 +56,7 @@ const Card = ({ data }) => {
         {!!quantity && <span>{quantity}</span>}
         {quantity === 1 && (
           <button
-            className="bg-slate-200 text-red-500 py-1 px-3 rounded-lg hover:text-red-600"
+            className="bg-slate-200 text-red-500 duration-300 py-1 px-3 rounded-lg hover:text-red-600"
             title="حذف از سبد خرید"
             onClick={() => clickHandler("REMOVE_ITEM")}
           >
@@ -65,7 +65,7 @@ const Card = ({ data }) => {
         )}
         {quantity > 1 && (
           <button
-            className="bg-slate-200 text-red-500 py-1 px-3 rounded-lg hover:text-red-600"
+            className="bg-slate-200 text-red-500 py-1 px-3 duration-300 rounded-lg hover:text-red-600"
             title="کاهش تعداد سبد خرید"
             onClick={() => clickHandler("DECREASE")}
           >
