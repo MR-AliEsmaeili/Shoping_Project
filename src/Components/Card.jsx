@@ -1,11 +1,10 @@
-import { BsBasket } from "react-icons/bs";
 import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { productsQuantity, ShortenText } from "../helpers/helper";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
 import { useCart } from "../Context/cartProvider";
+import { FaShoppingBasket } from "react-icons/fa";
 
 const Card = ({ data }) => {
   const { id, title, image, price } = data;
@@ -39,11 +38,11 @@ const Card = ({ data }) => {
         {/* <div className="flex justify-evenly items-center"> */}
         {quantity === 0 ? (
           <button
-            className="bg-indigo-500 text-white py-1 px-3 rounded-lg hover:bg-indigo-700"
+            className="bg-indigo-500 font-semibold text-white px-3 py-2 rounded-lg  hover:bg-indigo-700 "
             title="اضافه به سبد خرید"
             onClick={() => clickHandler("ADD_ITEM")}
           >
-            <BsBasket />
+            <FaShoppingBasket />
           </button>
         ) : (
           <button

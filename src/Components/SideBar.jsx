@@ -8,7 +8,7 @@ const SideBar = ({ setQuery }) => {
   };
 
   return (
-    <div className="flex flex-col align-baseline w-full md:w-1/4 h-fit bg-gray-100 p-4 py-10 rounded-lg shadow-md">
+    <div className="flex flex-col align-baseline w-full md:w-1/4 h-fit bg-gray-100 p-4 py-10 rounded-lg shadow-md ">
       <div className="flex align-baseline place-items-center mb-2">
         <BiCategory size={20} />
         <h2 className="text-lg font-semibold mr-3">دسته بندی ها</h2>
