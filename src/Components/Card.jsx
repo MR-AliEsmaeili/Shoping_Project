@@ -2,9 +2,10 @@ import { BsBasket } from "react-icons/bs";
 import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { productsQuantity, ShortenText } from "../helpers/helper";
-import { useCart } from "../Context/CartProvider";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
+import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
+import { useCart } from "../Context/cartProvider";
 
 const Card = ({ data }) => {
   const { id, title, image, price } = data;
@@ -35,8 +36,7 @@ const Card = ({ data }) => {
         >
           <TbListDetails />
         </Link>
-        {/* <div> */}
-
+        {/* <div className="flex justify-evenly items-center"> */}
         {quantity === 0 ? (
           <button
             className="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
@@ -47,17 +47,17 @@ const Card = ({ data }) => {
           </button>
         ) : (
           <button
-            className="bg-slate-200 text-green-700 py-1 px-3 rounded-lg hover:border border-green-700"
+            className="bg-slate-200 text-green-600 py-1 px-3 rounded-lg hover:text-green-700"
             title="اضافه کردن تعداد سبد خرید"
             onClick={() => clickHandler("INCREASE")}
           >
-            <CiCirclePlus />
+            <FaCirclePlus />
           </button>
         )}
         {!!quantity && <span>{quantity}</span>}
         {quantity === 1 && (
           <button
-            className="bg-slate-200 text-red-700 py-1 px-3 rounded-lg hover:border hover:border-red-700"
+            className="bg-slate-200 text-red-500 py-1 px-3 rounded-lg hover:text-red-600"
             title="حذف از سبد خرید"
             onClick={() => clickHandler("REMOVE_ITEM")}
           >
@@ -66,16 +66,16 @@ const Card = ({ data }) => {
         )}
         {quantity > 1 && (
           <button
-            className="bg-slate-200 text-red-700 py-1 px-3 rounded-lg hover:border border-red-700"
+            className="bg-slate-200 text-red-500 py-1 px-3 rounded-lg hover:text-red-600"
             title="کاهش تعداد سبد خرید"
             onClick={() => clickHandler("DECREASE")}
           >
-            <CiCircleMinus />
+            <FaCircleMinus />
           </button>
         )}
+        {/* </div> */}
       </div>
     </div>
-    // </div>
   );
 };
 

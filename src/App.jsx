@@ -6,18 +6,21 @@ import CheckoutPage from "./Pages/CheckoutPage";
 import NotFoundPage from "./Pages/NotFoundPage";
 import ProductProvider from "./Context/ProductProvider";
 import CartProvider from "./Context/cartProvider";
+import Layout from "./Components/layout/Layout";
 
 const App = () => {
   return (
     <CartProvider>
       <ProductProvider>
-        <Routes>
-          <Route index element={<Navigate to="/products" replace />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/:id" element={<ProductDetailsPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/*" element={<NotFoundPage />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route index element={<Navigate to="/products" replace />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:id" element={<ProductDetailsPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/*" element={<NotFoundPage />} />
+          </Routes>
+        </Layout>
       </ProductProvider>
     </CartProvider>
   );
