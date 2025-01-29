@@ -6,26 +6,28 @@ const Layout = ({ children }) => {
   const [state] = useCart();
   return (
     <>
-      <header className="flex justify-between w-full place-items-center px-8 py-6 mt-4 rounded-lg text-white  bg-blue-500">
-        <Link className="text-xl font-bold" to="./products">
-          فروشگاه اینترنتی
-        </Link>
-        <div
-          className={
-            "flex text-blue-600 bg-gray-200 p-2 rounded-md font-extrabold"
-          }
-        >
-          <span className="text-indigo-700">
-            {state.selectedItems.length > 0 && state.itemCounter}
-          </span>
-
-          <Link className="font-extrabold" to="./checkout">
-            <SlBasket className="text-2xl" />
+      <div className="flex fixed right-0 top-0 z-10   w-full  shadow-md shadow-gray-300 ">
+        <header className="flex    justify-between  w-full place-items-center  text-indigo-700  px-8 py-3  rounded-b-lg bg-gray-200">
+          <Link className="text-xl font-bold" to="./products">
+            فروشگاه اینترنتی
           </Link>
-        </div>
-      </header>
+          <div
+            className={
+              "flex text-white bg-indigo-500 p-2 rounded-md font-extrabold hover:bg-indigo-700 "
+            }
+          >
+            <span className="text-white">
+              {state.selectedItems.length > 0 && state.itemCounter}
+            </span>
+
+            <Link className="font-extrabold" to="./checkout">
+              <SlBasket className="text-2xl" />
+            </Link>
+          </div>
+        </header>
+      </div>
       {children}
-      <footer className="text-center my-10  p-6  rounded-lg text-white  bg-blue-500">
+      <footer className="text-center my-10  p-6  rounded-lg text-white  bg-indigo-500">
         طراحی با عشق توسط علی اسماعیلی 💜
       </footer>
     </>

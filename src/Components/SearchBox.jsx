@@ -7,7 +7,7 @@ const SearchBox = ({ search, setSearch, setQuery }) => {
   };
 
   return (
-    <div className="mt-16 flex align-baseline">
+    <div className="mt-24 flex align-baseline">
       <input
         className="p-3 rounded-lg shadow-sm shadow-gray-400 outline-none"
         type="text"
@@ -16,7 +16,7 @@ const SearchBox = ({ search, setSearch, setQuery }) => {
         onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
       />
       <button
-        className="p-3 mx-3 shadow-sm shadow-gray-400 rounded-lg bg-blue-500"
+        className="p-3 mx-3 shadow-sm shadow-gray-400 rounded-lg bg-indigo-700"
         onClick={searchHandler}
       >
         <ImSearch color="white" />

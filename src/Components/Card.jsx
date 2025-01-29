@@ -31,7 +31,7 @@ const Card = ({ data }) => {
       <div className="flex justify-around items-center w-full mt-auto">
         <Link
           to={`/products/${id}`}
-          className="text-blue-500 hover:text-blue-700 text-lg"
+          className="text-orange-500 hover:text-orange-700 text-lg"
           title="جزئیات محصول"
         >
           <TbListDetails />
@@ -39,7 +39,7 @@ const Card = ({ data }) => {
         {/* <div className="flex justify-evenly items-center"> */}
         {quantity === 0 ? (
           <button
-            className="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
+            className="bg-indigo-500 text-white py-1 px-3 rounded-lg hover:bg-indigo-700"
             title="اضافه به سبد خرید"
             onClick={() => clickHandler("ADD_ITEM")}
           >
