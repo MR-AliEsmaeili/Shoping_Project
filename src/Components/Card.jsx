@@ -11,6 +11,7 @@ const Card = ({ data }) => {
         className="w-full h-40 object-contain mb-4"
         src={image}
         alt={title}
+        loading="lazy"
       />
       <h3 className="text-lg font-semibold  text-gray-800 text-center mb-2">
         {ShortenText(title)}
