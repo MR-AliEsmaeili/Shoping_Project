@@ -16,11 +16,10 @@ const Layout = ({ children }) => {
               "flex text-white bg-indigo-500 p-2 rounded-md font-extrabold duration-300 hover:bg-indigo-700 "
             }
           >
-            <span className="text-white">
-              {state.selectedItems.length > 0 && state.itemCounter}
-            </span>
-
-            <Link className="font-extrabold" to="./checkout">
+            <Link className="font-extrabold flex" to="./checkout">
+              <span className="text-yellow-400">
+                {state.selectedItems.length > 0 && state.itemCounter}
+              </span>
               <SlBasket className="text-2xl" />
             </Link>
           </div>

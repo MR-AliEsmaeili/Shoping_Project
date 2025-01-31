@@ -1,15 +1,12 @@
-import {
-  Link,
-  Navigate,
-  useLinkClickHandler,
-  useParams,
-} from "react-router-dom";
-import { useProducts } from "../Context/ProductProvider";
-import { useCart } from "../Context/cartProvider";
-import Loader from "../Components/Loader";
-import { productsQuantity } from "../helpers/helper";
+import { Link, useParams } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
+
+import Loader from "../Components/Loader";
+
+import { useProducts } from "../Context/ProductProvider";
+import { useCart } from "../Context/cartProvider";
+import { productsQuantity } from "../helpers/helper";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -19,7 +16,6 @@ const ProductDetailsPage = () => {
 
   const clickHandler = (type) => {
     dispatch({ type, payload: product });
-    console.log(state);
   };
   if (!product) {
     return (
