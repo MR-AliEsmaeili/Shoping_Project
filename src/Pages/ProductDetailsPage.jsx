@@ -1,21 +1,34 @@
-import { Link, useLinkClickHandler, useParams } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  useLinkClickHandler,
+  useParams,
+} from "react-router-dom";
 import { useProducts } from "../Context/ProductProvider";
 import { useCart } from "../Context/cartProvider";
+import Loader from "../Components/Loader";
+import { productsQuantity } from "../helpers/helper";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const products = useProducts();
   const [state, dispatch] = useCart();
   const product = products.find((item) => item.id === Number(id));
+
   const clickHandler = (type) => {
     dispatch({ type, payload: product });
     console.log(state);
   };
   if (!product) {
     return (
-      <div className="text-center mt-24 text-red-500">محصول یافت نشد!</div>
+      <div className="h-[70vh]">
+        <Loader />
+      </div>
     );
   }
+  const quantity = productsQuantity(state, product.id);
 
   return (
     <>
@@ -50,12 +63,40 @@ const ProductDetailsPage = () => {
                 ({product.rating.count} امتیاز)
               </span>
             </div>
-            <button
-              className="mt-4 block text-center text-indigo-700 duration-300 p-3 rounded-md font-bold hover:bg-indigo-700 hover:text-white"
-              onClick={() => clickHandler("ADD_ITEM")}
-            >
-              افزودن به سبد خرید{" "}
-            </button>
+            <div className="flex gap-4 ">
+              {quantity === 0 ? (
+                <button
+                  className="bg-indigo-500 font-semibold duration-300 text-white px-3 py-2 rounded-lg  hover:bg-indigo-700"
+                  onClick={() => clickHandler("ADD_ITEM")}
+                >
+                  افزودن به سبد خرید{" "}
+                </button>
+              ) : (
+                <button
+                  className="bg-slate-200 text-green-600 duration-300 py-1 px-3 rounded-lg hover:text-green-700"
+                  onClick={() => clickHandler("INCREASE")}
+                >
+                  <FaCirclePlus />
+                </button>
+              )}
+              {!!quantity && <span>{quantity}</span>}
+              {quantity > 1 && (
+                <button
+                  className="bg-slate-200 text-red-500 py-1 px-3 duration-300 rounded-lg hover:text-red-600"
+                  onClick={() => clickHandler("DECREASE")}
+                >
+                  <FaCircleMinus />
+                </button>
+              )}
+              {quantity === 1 && (
+                <button
+                  className="bg-slate-200 text-red-500 duration-300 py-1 px-3 rounded-lg hover:text-red-600"
+                  onClick={() => clickHandler("REMOVE_ITEM")}
+                >
+                  <RiDeleteBin6Line />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
