@@ -10,19 +10,34 @@ const initialState = {
 };
 const reducer = (state, action) => {
   switch (action.type) {
+    // case "ADD_ITEM":
+    //   if (
+    //     !state.selectedItems.find((item) => {
+    //       item.id === action.payload.id;
+    //     })
+    //   ) {
+    //     state.selectedItems.push({ ...action.payload, quantity: 1 });
+    //   }
+    //   return {
+    //     ...state,
+    //     checkout: false,
+    //     ...sumProducts(state.selectedItems),
+    //   };
     case "ADD_ITEM":
-      if (
-        !state.selectedItems.find((item) => {
-          item.id === action.payload.id;
-        })
-      ) {
+      const existingItemIndex = state.selectedItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (existingItemIndex === -1) {
         state.selectedItems.push({ ...action.payload, quantity: 1 });
+      } else {
+        state.selectedItems[existingItemIndex].quantity++;
       }
       return {
         ...state,
         checkout: false,
         ...sumProducts(state.selectedItems),
       };
+
     case "REMOVE_ITEM":
       const newSelectedItems = state.selectedItems.filter(
         (item) => item.id !== action.payload.id
