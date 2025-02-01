@@ -6,7 +6,7 @@ import CheckoutPage from "./Pages/CheckoutPage";
 import NotFoundPage from "./Pages/NotFoundPage";
 import ProductProvider from "./Context/ProductProvider";
 import CartProvider from "./Context/cartProvider";
-import Layout from "./Components/layout/Layout";
+import Layout from "./layout/Layout";
 
 const App = () => {
   return (

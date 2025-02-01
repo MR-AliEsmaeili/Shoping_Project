@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../Context/cartProvider";
 import { SlBasket } from "react-icons/sl";
+import { useCart } from "../Context/cartProvider";
 
 const Layout = ({ children }) => {
   const [state] = useCart();
